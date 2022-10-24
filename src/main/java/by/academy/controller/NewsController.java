@@ -92,13 +92,10 @@ public class NewsController {
 	}
 
 	@GetMapping("/deleteNews")
-	public String deleteNews(HttpServletRequest request) {
+	public String deleteNews(@RequestParam("id") int[] id) {
 
 		try {
-			String[] idNews = request.getParameterValues("newsId");
-			if (idNews != null) {
-				newsService.deleteNews(StringToInt(idNews));
-			}
+				newsService.deleteNews(id);
 		} catch (ServiceException e) {
 			return ControllerConstant.ERROR;
 		}
@@ -107,7 +104,7 @@ public class NewsController {
 	}
 
 	@GetMapping("/editNews")
-	public String editNews(@RequestParam("newsId") int newsId, Model theModel) {
+	public String editNews(@RequestParam("id") int newsId, Model theModel) {
 
 		try {
 			News theNews = newsService.fetchById(newsId);
@@ -146,7 +143,7 @@ public class NewsController {
 	}
 
 	@GetMapping("/formForEdit")
-	public String editForm(@RequestParam("newsId") int newsId, Model theModel) {
+	public String editForm(@RequestParam("id") int newsId, Model theModel) {
 		try {
 			News theNews = newsService.fetchById(newsId);
 			theModel.addAttribute(ControllerConstant.EDIT_NEWS, theNews);

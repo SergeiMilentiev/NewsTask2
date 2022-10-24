@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<fmt:setLocale value="${sessionScope.local}" />
+<fmt:setLocale value="${local}" />
 <fmt:setBundle basename="localization.local" var="loc" />
 <fmt:message bundle="${loc}" key="local.menu_title.name"
 	var="news_menu" />
@@ -27,20 +27,23 @@
 </div>
 
 <div align="center">
-	<form:form action="updateNews" modelAttribute="news" method="POST"> 
-		<form:hidden path="idNews" />
+	<form:form action="updateNews" modelAttribute="news" method="post"> 
+		<form:hidden path="id" />
 		<div>
 			<p>${news_title}</p>
-			<p><form:input type="text" name="title" path="title" value="${news.title}" size=30 maxlength=150 required="required"/></p>
+			<p><form:input type="text" name="title" 
+				path="title" size="30" maxlength="150" required="required"/></p>
         
         	<p>${news_brief}</p>
-			<p><form:input type="text" name="brief" path="briefNews" value="${news.briefNews}" size=30 maxlength=150 required="required"/></p>
+			<p><form:input type="text" name="brief" 
+				path="briefNews" size="30" maxlength="150" required="required"/></p>
        					
 			<p>${news_content}</p>	
-            <p><form:input name="content" path="content" size="100" height="350" required="required"/><c:out value="${news.content }" /></p>
+            <p><form:input type="text" name="content" 
+            	path="content" size="100" height="350" maxlength="1500" required="required"/></p>
   		</div>
   <div>
-      <input type="submit" value="${edit_button}"/>
+      <input type="submit" value="${edit_button}" class="save" />
   </div>
   
   <c:if test = "${news_updated_status eq false}">

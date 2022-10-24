@@ -22,7 +22,7 @@
 
 <div class="body-title">
 <c:url var="toNewsList" value="newsList">
-		 <c:param name="newsId" value="${news.idNews}" />
+		 <c:param name="id" value="${news.id}" />
 	</c:url>
 	<a href= baseLayout>${news_menu} >> </a> ${view_news_title}
 </div>
@@ -59,17 +59,17 @@
 </div>
 
 
-<c:if test="${sessionScope.role eq 'admin'}">
+<c:if test="${role eq 'admin'}">
 <div class="first-view-button">
-	<c:url var="editNewsLink" value="editNews">
-		 <c:param name="newsId" value="${news.id}" />
+	<c:url var="editNewsLink" value="/editNews">
+		 <c:param name="id" value="${news.id}" />
 	</c:url>
 	<a href="${editNewsLink}">${button_edit}</a>
 </div>
 
 <div class="second-view-button">
-	<c:url var="deleteNewsLink" value="deleteNews">
-		<c:param name="newsId" value="${news.idNews}" />
+	<c:url var="deleteNewsLink" value="/deleteNews">
+		<c:param name="id" value="${news.id}" />
 	</c:url>
 	<a href="${deleteNewsLink}">${button_delete}</a>
 </div>

@@ -23,12 +23,13 @@
 	var="add_news_link" />	
 
 <div class="body-title">
-	<a href= baseLayout >${news_menu} >> </a> ${add_news_link}
+	<a href= "baseLayout">${news_menu} >> </a> ${add_news_link}
 </div>
 
 <div align="center">
 	<form:form action="saveNews" method="post" modelAttribute="news"> 
 		<div>
+			<form:hidden path="id" />
 			<p>${news_title}</p>
 			<p><input type="text" name="title" placeholder="${news_title}" size=30 maxlength=150 required="required"/></p>
         
@@ -39,8 +40,7 @@
             <p><textarea name="content" required="required"/></textarea></p>
   		</div>
   <div>
-    <!--  <input type="hidden" name="command" value="add_news" /> -->
-    <input type="submit" value="${save_button}"/>
+    <input type="submit" value="${save_button}" class="save"/>
   </div>
   
   <c:if test = "${sessionScope.news_added_status eq false}">

@@ -20,7 +20,7 @@ public class News implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer idNews;
+	private int id;
 
 	@Column(name = "title")
 	private String title;
@@ -37,9 +37,9 @@ public class News implements Serializable {
 	public News() {
 	}
 
-	public News(int idNews, String title, String briefNews, String content, LocalDate newsDate) {
+	public News(int id, String title, String briefNews, String content, LocalDate newsDate) {
 		super();
-		this.idNews = idNews;
+		this.id = id;
 		this.title = title;
 		this.briefNews = briefNews;
 		this.content = content;
@@ -62,12 +62,12 @@ public class News implements Serializable {
 		this.newsDate = LocalDate.now();
 	}
 
-	public Integer getIdNews() {
-		return idNews;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdNews(Integer idNews) {
-		this.idNews = idNews;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -105,7 +105,7 @@ public class News implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(briefNews, content, idNews, newsDate, title);
+		return Objects.hash(briefNews, content, id, newsDate, title);
 	}
 
 	@Override
@@ -118,13 +118,13 @@ public class News implements Serializable {
 			return false;
 		News other = (News) obj;
 		return Objects.equals(briefNews, other.briefNews) && Objects.equals(content, other.content)
-				&& Objects.equals(idNews, other.idNews) && Objects.equals(newsDate, other.newsDate)
+				&& Objects.equals(id, other.id) && Objects.equals(newsDate, other.newsDate)
 				&& Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
-		return "News idNews=" + idNews + ", title=" + title + ", briefNews=" + briefNews + ", content=" + content
+		return "News id=" + id + ", title=" + title + ", briefNews=" + briefNews + ", content=" + content
 				+ ", newsDate=" + newsDate;
 	}
 

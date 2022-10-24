@@ -38,17 +38,17 @@
 				<div class="news-link-to-wrapper">
 					<div class="link-position">
 						<c:url var="editNewsLink" value="editNews">
-							<c:param name="newsId" value="${news.idNews}" />
+							<c:param name="newsId" value="${news.id}" />
 						</c:url>
 						<a href="${editNewsLink}">${edit_news_button}</a>&nbsp;
 						
 						<c:url var="viewNewsLink" value="viewNews">
-							<c:param name="newsId" value="${news.idNews}" />
+							<c:param name="newsId" value="${news.id}" />
 						</c:url>
-						<a href="${viewNewsLink}">{view_news_button}</a>&nbsp;
+						<a href="${viewNewsLink}">${view_news_button}</a>&nbsp;
    					    
    					    <c:if test="${role eq 'admin'}">
-   					        <input type="checkbox" name="newsId" value="${news.idNews}" />
+   					        <input type="checkbox" name="newsId" value="${news.id}" />
    					    </c:if>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 		<c:if test="${not(news eq null) && role eq 'admin'}">
 			<form:form action="deleteNews" modelAttribute="news" method="get">		
 				<input type="hidden" name="newsId"/> 
-				<p align="right"><input	type="submit" name="${delete_button}" onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false" /></p><br />
+				<p align="right"><input	type="submit" name="delete" onclick="if (!(confirm('Are you sure you want to delete this news?'))) return false" /></p><br />
 			</form:form>
 		</c:if>
 	</div>
