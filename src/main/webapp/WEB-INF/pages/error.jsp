@@ -1,0 +1,1 @@
+<a href="/WEB-INF/view/header.jsp"><img src="images/image404.jpeg" alt="HTML5 Icon" width="100%"> </a>
