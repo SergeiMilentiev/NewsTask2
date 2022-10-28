@@ -43,7 +43,7 @@ public class News implements Serializable {
 		this.title = title;
 		this.briefNews = briefNews;
 		this.content = content;
-		this.newsDate = newsDate;
+		this.newsDate = LocalDate.now();
 	}
 
 	public News(String title, String briefNews, String content, LocalDate newsDate) {
@@ -51,7 +51,7 @@ public class News implements Serializable {
 		this.title = title;
 		this.briefNews = briefNews;
 		this.content = content;
-		this.newsDate = newsDate;
+		this.newsDate = LocalDate.now();
 	}
 
 	public News(String title, String briefNews, String content) {

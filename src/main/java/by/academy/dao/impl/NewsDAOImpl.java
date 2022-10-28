@@ -1,5 +1,7 @@
 package by.academy.dao.impl;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -85,6 +87,7 @@ public class NewsDAOImpl implements INewsDAO {
 
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
+			news.setNewsDate(LocalDate.now());
 			currentSession.save(news);
 		} catch (Exception e) {
 			throw new NewsDAOException(e);

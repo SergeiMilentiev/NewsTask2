@@ -11,7 +11,7 @@ public class ControllerConstant {
 	public static final String EDIT_NEWS = "editNews";
 	public static final String VIEW_NEWS = "viewNews";
 	public static final String ADD_NEWS = "addNews";
-	public static final String REDIRECT_NEWS_LIST = "redirect:/newsList";
+	public static final String REDIRECT_NEWS_LIST = "redirect:/news/newsList";
 	public static final String NOT_ACTIVE = "notActive";
 	public static final String PRESENTATION = "presentation";
 	public static final String BASE_LAYOUT = "baseLayout";

@@ -2,8 +2,6 @@ package by.academy.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,19 +81,20 @@ public class NewsController {
 	@RequestMapping("/addNews")
 	public String addNews(Model theModel) {
 
+		News theNews = new News();
 		theModel.addAttribute(ControllerConstant.USER, ControllerConstant.ACTIVE);
 		theModel.addAttribute(ControllerConstant.ROLE, ControllerConstant.ADMIN);
-		theModel.addAttribute(ControllerConstant.NEWS, ControllerConstant.ADD_NEWS);
+		theModel.addAttribute(ControllerConstant.NEWS, theNews);
 		theModel.addAttribute(ControllerConstant.PRESENTATION, ControllerConstant.ADD_NEWS);
 
 		return ControllerConstant.BASE_LAYOUT;
 	}
 
 	@GetMapping("/deleteNews")
-	public String deleteNews(@RequestParam("id") int[] id) {
+	public String deleteNews(@RequestParam("id") String[] id) {
 
 		try {
-				newsService.deleteNews(id);
+			newsService.deleteNews(StringToInt(id));
 		} catch (ServiceException e) {
 			return ControllerConstant.ERROR;
 		}
@@ -120,7 +119,7 @@ public class NewsController {
 	}
 
 	@GetMapping("/viewNews")
-	public String viewNews(@RequestParam("newsId") int newsId, Model theModel) {
+	public String viewNews(@RequestParam("id") int newsId, Model theModel) {
 
 		try {
 			News theNews = newsService.fetchById(newsId);
@@ -139,7 +138,7 @@ public class NewsController {
 	public String addForm(Model theModel) {
 		News theNews = new News();
 		theModel.addAttribute("add_news", theNews);
-		return ControllerConstant.BASE_LAYOUT;
+		return ControllerConstant.REDIRECT_NEWS_LIST;
 	}
 
 	@GetMapping("/formForEdit")
@@ -186,6 +185,7 @@ public class NewsController {
 	private int[] StringToInt(String[] stringArray) {
 		int[] array = new int[stringArray.length];
 		for (int i = 0; i < stringArray.length; i++) {
+			System.out.println(stringArray[i]);
 			array[i] = Integer.parseInt(stringArray[i]);
 		}
 		return array;

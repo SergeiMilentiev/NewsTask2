@@ -24,7 +24,7 @@
 <c:url var="toNewsList" value="newsList">
 		 <c:param name="id" value="${news.id}" />
 	</c:url>
-	<a href= baseLayout>${news_menu} >> </a> ${view_news_title}
+	<a href= "newsList">${news_menu} >> </a> ${view_news_title}
 </div>
 
 <div class="add-table-margin">
@@ -61,14 +61,14 @@
 
 <c:if test="${role eq 'admin'}">
 <div class="first-view-button">
-	<c:url var="editNewsLink" value="/editNews">
+	<c:url var="editNewsLink" value="editNews">
 		 <c:param name="id" value="${news.id}" />
 	</c:url>
 	<a href="${editNewsLink}">${button_edit}</a>
 </div>
 
 <div class="second-view-button">
-	<c:url var="deleteNewsLink" value="/deleteNews">
+	<c:url var="deleteNewsLink" value="deleteNews">
 		<c:param name="id" value="${news.id}" />
 	</c:url>
 	<a href="${deleteNewsLink}">${button_delete}</a>

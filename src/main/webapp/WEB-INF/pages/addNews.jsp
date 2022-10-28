@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<fmt:setLocale value="${sessionScope.local}" />
+<fmt:setLocale value="${local}" />
 <fmt:setBundle basename="localization.local" var="loc" />
 <fmt:message bundle="${loc}" key="local.menu_title.name"
 	var="news_menu" />
@@ -23,33 +23,31 @@
 	var="add_news_link" />	
 
 <div class="body-title">
-	<a href= "baseLayout">${news_menu} >> </a> ${add_news_link}
+	<a href= "newsList">${news_menu} >> </a> ${add_news_link}
 </div>
 
 <div align="center">
 	<form:form action="saveNews" method="post" modelAttribute="news"> 
-		<div>
 			<form:hidden path="id" />
 			<p>${news_title}</p>
-			<p><input type="text" name="title" placeholder="${news_title}" size=30 maxlength=150 required="required"/></p>
+			<p><input type="text" name="title" placeholder="${news_title}" size="30" maxlength="150" required="required"/></p>
         
         	<p>${news_brief}</p>
-			<p><input type="text" name="brief" placeholder="${news_brief}" size=30 maxlength=150 required="required"/></p>
+			<p><input type="text" name="briefNews" placeholder="${news_brief}" size="30" maxlength="150" required="required"/></p>
        					
 			<p>${news_content}</p>	
             <p><textarea name="content" required="required"/></textarea></p>
-  		</div>
   <div>
     <input type="submit" value="${save_button}" class="save"/>
   </div>
   
-  <c:if test = "${sessionScope.news_added_status eq false}">
+  <c:if test = "${news_added_status eq false}">
    		<font color="red">
 			<c:out value="${news_not_added}"/><br>
 		</font>
   </c:if>
   
-  <c:if test = "${sessionScope.news_added_status eq true}">
+  <c:if test = "${news_added_status eq true}">
    		<font color="green">
 			<c:out value="${news_added}"/><br>
 		</font>

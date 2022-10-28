@@ -18,7 +18,7 @@
 	var="no_news" />
 
 <div class="body-title">
-	<a href="">${menu_title} >> </a> ${news_list}
+	<a href="newsList">${menu_title} >> </a> ${news_list}
 </div>
 
 
@@ -38,17 +38,21 @@
 				<div class="news-link-to-wrapper">
 					<div class="link-position">
 						<c:url var="editNewsLink" value="editNews">
-							<c:param name="newsId" value="${news.id}" />
+							<c:param name="id" value="${news.id}" />
 						</c:url>
 						<a href="${editNewsLink}">${edit_news_button}</a>&nbsp;
 						
 						<c:url var="viewNewsLink" value="viewNews">
-							<c:param name="newsId" value="${news.id}" />
+							<c:param name="id" value="${news.id}" />
 						</c:url>
 						<a href="${viewNewsLink}">${view_news_button}</a>&nbsp;
+						
+						<c:url var="deleteNews" value="deleteNews">
+							<c:param name="id" value="${news.id}"/>
+						</c:url>
    					    
    					    <c:if test="${role eq 'admin'}">
-   					        <input type="checkbox" name="newsId" value="${news.id}" />
+   					        <input type="checkbox" name="id" value="${news.id}" />
    					    </c:if>
 					</div>
 				</div>
@@ -62,9 +66,7 @@
 	</div>
 	<div class="delete-button">
 		<c:if test="${not(news eq null) && role eq 'admin'}">
-			<form:form action="deleteNews" modelAttribute="news" method="get">		
-				<input type="hidden" name="newsId"/> 
-				<p align="right"><input	type="submit" name="delete" onclick="if (!(confirm('Are you sure you want to delete this news?'))) return false" /></p><br />
-			</form:form>
+			<a href="${deleteNews}">${delete_button}</a>
+			<input	type="submit" value="${delete_button}" class="delete" onclick="if (!(confirm('Are you sure you want to delete this news?'))) return false" /></p><br />
 		</c:if>
 	</div>

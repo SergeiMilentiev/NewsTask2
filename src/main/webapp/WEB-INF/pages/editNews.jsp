@@ -23,12 +23,13 @@
 	var="edit_news_title" />		
 
 <div class="body-title">
-	<a href=baseLayout>${news_menu} >> </a> ${edit_news_title}
+	<a href="newsList">${news_menu} >> </a> ${edit_news_title}
 </div>
 
 <div align="center">
 	<form:form action="updateNews" modelAttribute="news" method="post"> 
 		<form:hidden path="id" />
+		<form:hidden path="newsDate"/>
 		<div>
 			<p>${news_title}</p>
 			<p><form:input type="text" name="title" 
