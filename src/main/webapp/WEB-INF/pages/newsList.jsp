@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<fmt:setLocale value="${sessionScope.local}" />
+<fmt:setLocale value="${local}" />
 <fmt:setBundle basename="localization.local" var="loc" />
 <fmt:message bundle="${loc}" key="local.menu_title.name"
 	var="menu_title" />
@@ -21,7 +21,7 @@
 	<a href="newsList">${menu_title} >> </a> ${news_list}
 </div>
 
-
+<form:form action="deleteNews" modelAttribute="news" method="get">
 	<c:forEach var="news" items="${news}">
 		<div class="single-news-wrapper">
 			<div class="single-news-header-wrapper">
@@ -46,27 +46,23 @@
 							<c:param name="id" value="${news.id}" />
 						</c:url>
 						<a href="${viewNewsLink}">${view_news_button}</a>&nbsp;
-						
-						<c:url var="deleteNews" value="deleteNews">
-							<c:param name="id" value="${news.id}"/>
-						</c:url>
    					    
    					    <c:if test="${role eq 'admin'}">
-   					        <input type="checkbox" name="id" value="${news.id}" />
+   					        <input type="checkbox" id="check" name="id" value="${news.id}" />
    					    </c:if>
 					</div>
 				</div>
 			</div>
 		</div>
 	</c:forEach>
+	<div class="delete-button">
+		<c:if test="${not(news eq null) && role eq 'admin'}">
+			<input	type="submit" value="${delete_button}" class="delete" onclick="if (!(confirm('Are you sure you want to delete this news?'))) return false" /><br />
+		</c:if>
+	</div>
 	<div class="no-news">
 		<c:if test="${news eq null}">
         	${no_news}
 		</c:if>
 	</div>
-	<div class="delete-button">
-		<c:if test="${not(news eq null) && role eq 'admin'}">
-			<a href="${deleteNews}">${delete_button}</a>
-			<input	type="submit" value="${delete_button}" class="delete" onclick="if (!(confirm('Are you sure you want to delete this news?'))) return false" /></p><br />
-		</c:if>
-	</div>
+</form:form>

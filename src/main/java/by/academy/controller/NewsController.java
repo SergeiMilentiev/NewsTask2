@@ -55,7 +55,7 @@ public class NewsController {
 	}
 
 	@PostMapping("/saveNews")
-	public String saveNews(@ModelAttribute("news") News news) {
+	public String saveNews(@ModelAttribute(ControllerConstant.NEWS) News news) {
 
 		try {
 			newsService.saveNews(news);
@@ -67,7 +67,7 @@ public class NewsController {
 	}
 
 	@PostMapping("/updateNews")
-	public String updateNews(@ModelAttribute("news") News news) {
+	public String updateNews(@ModelAttribute(ControllerConstant.NEWS) News news) {
 
 		try {
 			newsService.updateNews(news);
@@ -91,7 +91,7 @@ public class NewsController {
 	}
 
 	@GetMapping("/deleteNews")
-	public String deleteNews(@RequestParam("id") String[] id) {
+	public String deleteNews(@RequestParam(ControllerConstant.ID) String[] id) {
 
 		try {
 			newsService.deleteNews(StringToInt(id));
@@ -103,7 +103,7 @@ public class NewsController {
 	}
 
 	@GetMapping("/editNews")
-	public String editNews(@RequestParam("id") int newsId, Model theModel) {
+	public String editNews(@RequestParam(ControllerConstant.ID) int newsId, Model theModel) {
 
 		try {
 			News theNews = newsService.fetchById(newsId);
@@ -119,7 +119,7 @@ public class NewsController {
 	}
 
 	@GetMapping("/viewNews")
-	public String viewNews(@RequestParam("id") int newsId, Model theModel) {
+	public String viewNews(@RequestParam(ControllerConstant.ID) int newsId, Model theModel) {
 
 		try {
 			News theNews = newsService.fetchById(newsId);
@@ -134,15 +134,15 @@ public class NewsController {
 		return ControllerConstant.BASE_LAYOUT;
 	}
 
-	@GetMapping("/addForm")
-	public String addForm(Model theModel) {
-		News theNews = new News();
-		theModel.addAttribute("add_news", theNews);
-		return ControllerConstant.REDIRECT_NEWS_LIST;
-	}
+//	@GetMapping("/addForm")
+//	public String addForm(Model theModel) {
+//		News theNews = new News();
+//		theModel.addAttribute("add_news", theNews);
+//		return ControllerConstant.REDIRECT_NEWS_LIST;
+//	}
 
 	@GetMapping("/formForEdit")
-	public String editForm(@RequestParam("id") int newsId, Model theModel) {
+	public String editForm(@RequestParam(ControllerConstant.ID) int newsId, Model theModel) {
 		try {
 			News theNews = newsService.fetchById(newsId);
 			theModel.addAttribute(ControllerConstant.EDIT_NEWS, theNews);

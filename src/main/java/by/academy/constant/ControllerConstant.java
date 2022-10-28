@@ -1,6 +1,7 @@
 package by.academy.constant;
 
 public class ControllerConstant {
+	public static final String ID = "id";
 	public static final String USER = "user";
 	public static final String NEWS = "news";
 	public static final String ROLE = "role";
