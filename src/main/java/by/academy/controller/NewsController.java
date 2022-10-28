@@ -134,13 +134,6 @@ public class NewsController {
 		return ControllerConstant.BASE_LAYOUT;
 	}
 
-//	@GetMapping("/addForm")
-//	public String addForm(Model theModel) {
-//		News theNews = new News();
-//		theModel.addAttribute("add_news", theNews);
-//		return ControllerConstant.REDIRECT_NEWS_LIST;
-//	}
-
 	@GetMapping("/formForEdit")
 	public String editForm(@RequestParam(ControllerConstant.ID) int newsId, Model theModel) {
 		try {
